@@ -16,8 +16,9 @@
 
 # Apex libraries
 PRODUCT_COPY_FILES += \
-    $(OUT_DIR)/target/product/RMX2103/obj/SHARED_LIBRARIES/libandroidicu_intermediates/libandroidicu.so:$(TARGET_COPY_OUT_RECOVERY)/root/system/lib64/libandroidicu.so
-
+    $(OUT_DIR)/target/product/RMX2103/obj/SHARED_LIBRARIES/libandroidicu_intermediates/libandroidicu.so:$(TARGET_COPY_OUT_RECOVERY)/root/sbin/libandroidicu.so \
+    $(OUT_DIR)/target/product/RMX2103/obj/SHARED_LIBRARIES/libandroidicu_intermediates/libandroidicu.so:$(TARGET_COPY_OUT_RECOVERY)/root/sbin/libicui18n.so \
+    $(OUT_DIR)/target/product/RMX2103/obj/SHARED_LIBRARIES/libandroidicu_intermediates/libandroidicu.so:$(TARGET_COPY_OUT_RECOVERY)/root/sbin/libcuuc.so
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
     device/realme/RMX2103
@@ -26,3 +27,12 @@ PRODUCT_SOONG_NAMESPACES += \
 PRODUCT_PACKAGES += \
     qcom_decrypt \
     qcom_decrypt_fbe
+
+# Copy recovery/root
+PRODUCT_COPY_FILES += $(call find-copy-subdir-files,*,$(LOCAL_PATH)/recovery/root,recovery/root)
+
+# FastbootD
+PRODUCT_PACKAGES += \
+    android.hardware.fastboot@1.0-impl-mock \
+    android.hardware.fastboot@1.0-impl-mock.recovery
+

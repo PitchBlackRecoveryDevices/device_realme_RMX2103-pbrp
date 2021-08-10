@@ -1,7 +1,7 @@
 on boot
     start ashmemd
 
-service ashmemd /system/bin/ashmemd
+service ashmemd /sbin/ashmemd
     user root
     group root
     disabled
